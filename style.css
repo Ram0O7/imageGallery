@@ -190,11 +190,16 @@ h1{
   #prev,#next{
    display: none; 
   }
-  .btn1{
-    bottom: 18vh;
+  .btn{
+  background: none;
+  right: 5px;
+}
+  .page-down{
+    bottom: 20vh;
   }
   
-  .btn2{
-    bottom: 9vh;
+  .go-down{
+    bottom: 8vh;
+    font-size: 50px;
   }
 }
