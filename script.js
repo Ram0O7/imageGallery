@@ -82,6 +82,7 @@ form.addEventListener('submit', event => {
 
 window.addEventListener('scroll', function () {
     if (window.innerHeight + window.scrollY >= this.document.body.offsetHeight) {
-       getAndDisplayImages(query);
+        page++;
+        getAndDisplayImages(query);
     }
 });
