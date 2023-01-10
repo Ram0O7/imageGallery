@@ -8,6 +8,7 @@ const carousel = document.getElementById('carousel');
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
 const closeMobile = document.querySelector('.mb-close');
+const loadingSpinner = document.querySelector("#loading-spinner");
 
 let page = 1; // Initialize page counter
 let query = 'booty'; // Initialize search query
@@ -15,7 +16,7 @@ let images = [];
 imageContainer.innerHTML = ''
 // Function to retrieve and display images for a search query
 async function getAndDisplayImages(query) {
-    
+
     // Make API request to retrieve images for the search query
     const response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&page=${page}&per_page=20`, {
         headers: {
@@ -23,7 +24,7 @@ async function getAndDisplayImages(query) {
         }
     });
     const data = await response.json();
-    
+
     // Add images to the page
     data.results.forEach(image => {
         const imgElement = document.createElement('img');
@@ -77,7 +78,6 @@ function closeModal() {
     modalImage.src = '';
     document.body.style.overflow = 'unset';
 }
-
 // Event listeners for the modal
 // modal.addEventListener('click', closeModal);
 closeButton.addEventListener('click', closeModal);
@@ -91,15 +91,22 @@ form.addEventListener('submit', event => {
     query = queryInput.value;
     // Clear the current images from the page
     imageContainer.innerHTML = '';
-    images.splice(0,images.length)
+    images.splice(0, images.length)
     // Retrieve and display the images for the new search query
     getAndDisplayImages(query);
 });
 
 window.addEventListener('scroll', function () {
     if (window.innerHeight + window.scrollY >= this.document.body.offsetHeight) {
-        page < 11 ? page++ : this.window.scrollTo(0,this.window.innerHeight);
-        console.log(page);
-        getAndDisplayImages(query);
+        loadingSpinner.style.display = 'block';
+        setTimeout(function loadmore() {
+            if (page < 11) {
+                page++;
+                getAndDisplayImages(query);
+            } else {
+                this.window.scrollTo(-200, this.window.innerHeight);
+            }
+            loadingSpinner.style.display = 'none';
+        }, 1500);
     }
 });
