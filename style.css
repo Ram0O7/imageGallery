@@ -62,6 +62,8 @@ form{
 }
 
 #image-modal {
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -77,27 +79,14 @@ form{
   height: 100vh;
   display: block;
   object-fit: contain;
+  margin-inline: auto;
 }
 
-#carousel {
+#caurosel{
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-width: 80%;
-  min-height: 100%;
-}
-
-#prev,
-#next {
-  background: none;
-  border: none;
-  border-radius: 7px;
-  color: #aaa;
-  font-size: 65px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  cursor: pointer;
 }
 
 .close {
@@ -116,41 +105,6 @@ form{
 .close:focus {
   color: #fff;
   cursor: pointer;
-}
-
-.btn,.page-down{
-  position: fixed;
-}
-.btn{
-  background-color: rgba(0, 0, 0, 0.4);
-  width: 50px;
-  height: 50px;
-  right: 13px;
-  border-radius: 100%;
-}
-.page-down {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left:10px;
-  width: 10px;
-  height: 10px;
-  font-size: 40px;
-  cursor: pointer;
-  z-index: 999;
-  margin: auto;
-}
-
-.btn span{
-  color: rgb(158, 242, 132);
-}
-
-.btn1{
-  bottom: 15vh;
-}
-
-.btn2{
-  bottom: 8vh;
 }
 
 
@@ -186,19 +140,4 @@ h1{
 .close{
   display: none;
 }
-
-  #prev,#next{
-   display: none; 
-  }
-  .btn{
-  background: none;
-  right: 5px;
-}
-  .page-down{
-    bottom: 20vh;
-  }
-  
-  .go-down{
-    bottom: 8vh;
-  }
 }

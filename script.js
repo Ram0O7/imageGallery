@@ -41,6 +41,9 @@ async function getAndDisplayImages(query) {
     });
 }
 
+// getAndDisplayImages starting point
+getAndDisplayImages(query);
+
 // Function to open the modal and display the full-size image
 function openModal(imageUrl) {
     modalImage.src = imageUrl;
@@ -66,15 +69,6 @@ function closeModal() {
 closeButton.addEventListener('click', closeModal);
 closeMobile.addEventListener('click', closeModal);
 
-// Function to handle the scroll event
-// function handleScroll() {
-//     // Check if the user has scrolled to the bottom of the page
-//     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-//         // Increment the page counter and retrieve more images
-//         console.log("hii there!")
-//     }
-// }
-
 // Event listener for the search form
 form.addEventListener('submit', event => {
     event.preventDefault();
@@ -85,21 +79,3 @@ form.addEventListener('submit', event => {
     // Retrieve and display the images for the new search query
     getAndDisplayImages(query);
 });
-
-// Initialize the app by retrieving and displaying the first set of images
-getAndDisplayImages(query);
-
-function pageDown() {
-    window.scrollTo(0, document.body.scrollHeight - 50);
-    page++;
-    getAndDisplayImages(query);
-}
-  
-function pageDown_() {
-    window.scrollTo(0, document.body.scrollHeight - 50);
-  }
-  
-
-// Implement infinite scroll by tracking the user's scroll position and making
-// additional API requests to retrieve more images as the user scrolls down
-// window.addEventListener('scroll', handleScroll);
