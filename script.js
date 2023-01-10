@@ -32,20 +32,35 @@ async function getAndDisplayImages(query) {
         imgElement.classList.add('image-thumbnail');
         imgElement.addEventListener('click', () => openModal(image.urls.full));
         images.push(imgElement);
-        // imageContainer.appendChild(imgElement);
-        images.forEach(img => {
-            imageContainer.appendChild(img)
-        });
+        imageContainer.appendChild(imgElement);
+        // lastCardObserver.observe(document.querySelector('.image-thumbnail:last-child'));
+        // images.forEach(img => {
+        //     imageContainer.appendChild(img)
+        // });
     });
 }
 
 // getAndDisplayImages starting point
 getAndDisplayImages(query);
 
+//adding intersection observer for lazy load of images retrieved and applying infinite scroll
+// const lastCardObserver = new IntersectionObserver(entries => {
+//     const lastCard = entries[0];
+//     if (!lastCard.isIntersecting) return;
+//     if(lastCard.isIntersecting) lastCardObserver.unobserve(lastCard.target)
+//     getAndDisplayImages(query);
+//     lastCardObserver.unobserve(lastCard.target);
+//     lastCardObserver.observe(document.querySelector('.image-thumbnail:last-child'));
+// }, {
+//     rootMargin: "100px",
+//     threshold: 0.5,
+// });
+
 // Function to open the modal and display the full-size image
 function openModal(imageUrl) {
     modalImage.src = imageUrl;
     modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
     // Display the carousel images
     images.forEach((image, index) => {
         if (index === currentImageIndex) {
@@ -60,6 +75,7 @@ function openModal(imageUrl) {
 function closeModal() {
     modal.style.display = 'none';
     modalImage.src = '';
+    document.body.style.overflow = 'unset';
 }
 
 // Event listeners for the modal
@@ -82,7 +98,8 @@ form.addEventListener('submit', event => {
 
 window.addEventListener('scroll', function () {
     if (window.innerHeight + window.scrollY >= this.document.body.offsetHeight) {
-        page++;
+        page < 11 ? page++ : this.window.scrollTo(0,this.window.innerHeight);
+        console.log(page);
         getAndDisplayImages(query);
     }
 });
