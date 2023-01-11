@@ -2,6 +2,7 @@
 
 body{
   font-family: "Ubuntu",sans-serif;
+  background-color: #ccc;
 }
 
 h1{
@@ -54,8 +55,8 @@ form{
 }
 
 .image-thumbnail {
-  width: 320px;
-  height: 320px;
+  width: 330px;
+  height: 330px;
   object-fit: cover;
   margin: 10px;
   cursor: pointer;
@@ -124,8 +125,8 @@ h1{
 
   .image-thumbnail {
     width: 100vw;
-    height: 400px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
   }
 
   #modal-image {
